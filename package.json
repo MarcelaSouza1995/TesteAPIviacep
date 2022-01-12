@@ -1,0 +1,15 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "Teste da API viacep",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Marcela",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.4.7",
+    "supertest": "^6.2.1"
+  }
+}
