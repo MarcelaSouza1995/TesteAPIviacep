@@ -96,6 +96,8 @@ API_URL = 'https://viacep.com.br'
 
 const STATUS_OK = 200;
 const STATUS_BAD_REQUEST = 400;
+const STATUS_FORBIDDEN = 403;
+
 
  describe('Teste na API ViaCEP', () => {
   it('Testar a busca de determinado CEP', () => {
@@ -120,8 +122,9 @@ const STATUS_BAD_REQUEST = 400;
   })
 
   it('Busca por CEP inválido', () => {
-    request(API_URL).get('/ws/00000000/json').expect(STATUS_OK)
-      .then(response => {
+    request(API_URL).get('/ws/00000000/json')
+    .expect(STATUS_OK)
+    .then(response => {
         expect(response.body).toEqual({"erro": true})
       })
   })
@@ -131,6 +134,16 @@ it('Buscar por CEP com cidade', () => {
   .then(response => {
     expect(response.body).toEqual(responsePorCidade)
   })
+})
+
+it('Apagar determinado CEP', ()=> {
+  request(API_URL).delete('/ws/33925560/json')
+  .expect(STATUS_FORBIDDEN)
+})
+
+it('Editar determinado CEP', ()=> {
+  request(API_URL).put('/ws/33925560/json')
+  .expect(STATUS_FORBIDDEN)
 })
 
  })
